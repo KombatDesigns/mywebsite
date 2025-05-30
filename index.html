@@ -1,298 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Future Finance MD | Smart Money for Healthcare</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Future Finance MD | Smarter Money for Healthcare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ───────────────  COLOUR SYSTEM  ─────────────── */
+    :root{
+      --bg-dark:       #0d1117;
+      --bg-card:       #14191f;
+      --fg-main:       #e9ecef;
+      --fg-muted:      #9aa0a6;
+      --accent:        #00e0b8;
+      --accent-sec:    #ffb454;
+      --border-radius: 14px;
+    }
+    /* light-mode toggle */
+    body.light{
+      --bg-dark:#f7f9fc; --bg-card:#ffffff; --fg-main:#1e1e1e;
+      --fg-muted:#555;  --accent:#00796b;  --accent-sec:#ff6f61;
+    }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    /* ───────────────  GLOBAL  ─────────────── */
+    *{box-sizing:border-box;padding:0;margin:0}
+    html,body{font-family:'Inter',sans-serif;background:var(--bg-dark);color:var(--fg-main);scroll-behavior:smooth}
+    a{color:var(--accent);text-decoration:none}
+    img{max-width:100%;height:auto;display:block}
 
-<style>
-/* -------------  COLOUR SYSTEM  ------------- */
-:root{
-  --p1:#00b4d8;       /* cyan accent   */
-  --p2:#5e60ce;       /* steel violet  */
-  --p3:#48cae4;       /* light cyan    */
-  --bg:#0d1b2a;       /* midnight navy */
-  --bg-alt:#15273d;   /* card          */
-  --fg:#e0e7ef;       /* main text     */
-  --muted:#9aa8c0;    /* muted text    */
-  --radius:14px;
-  --shadow:0 8px 40px rgba(0,0,0,.5);
-}
+    /* ───────────────  HEADER  ─────────────── */
+    header{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:1rem 2rem;background:var(--bg-card);position:sticky;top:0;z-index:999;
+      box-shadow:0 4px 16px rgba(0,0,0,.35);
+    }
+    .brand-wrap{display:flex;align-items:center;gap:.75rem}
+    .brand-wrap img{height:48px;width:48px}               /* logo size */
+    .brand-title{font-size:1.8rem;font-weight:700;color:var(--accent)}
+    nav a{margin:0 .8rem;font-weight:600;color:var(--fg-muted);position:relative}
+    nav a::after{content:'';position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--accent);transition:.3s}
+    nav a:hover::after{width:100%}
 
-/* -------------  GLOBAL  ------------- */
-*,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);
-  line-height:1.6;min-height:100vh
-}
-img{max-width:100%;display:block}
-h2{font-size:2rem;color:var(--p1);margin-bottom:.9rem;letter-spacing:-.3px}
-section{
-  position:relative;max-width:1040px;margin:3.5rem auto;padding:3rem 1.8rem;
-  background:var(--bg-alt);border-radius:var(--radius);box-shadow:var(--shadow);
-  opacity:0;transform:translateY(50px);transition:.9s
-}
-section.reveal{opacity:1;transform:translateY(0)}
+    .toggle-btn{
+      padding:.45rem .9rem;background:var(--accent);border:none;border-radius:6px;
+      font-weight:600;color:#fff;cursor:pointer;
+    }
 
-/* -------------  HEADER ------------- */
-header{
-  position:sticky;top:0;z-index:999;background:var(--bg-alt);
-  box-shadow:0 2px 18px rgba(0,0,0,.4);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:.9rem 1.7rem
-}
-.logo-bar{display:flex;align-items:center;gap:.9rem;font-weight:700}
-.logo-bar img{height:52px;width:auto}
-.logo-bar span{font-size:1.25rem}
-nav{display:flex;gap:1.4rem;font-weight:600}
-nav a{color:var(--muted);text-decoration:none;position:relative;letter-spacing:.2px}
-nav a::after{
-  content:'';position:absolute;left:0;bottom:-4px;height:2px;width:0;
-  background:var(--p1);transition:.35s
-}
-nav a:hover::after,nav a.active::after{width:100%}
-.toggle{
-  background:var(--p1);border:none;border-radius:8px;color:#fff;padding:.45rem 1rem;
-  cursor:pointer;font-weight:600
-}
-/* burger */
-.burger{display:none;width:28px;height:20px;flex-direction:column;
-  justify-content:space-between;cursor:pointer}
-.burger span{height:3px;width:100%;background:var(--p1);border-radius:3px;transition:.45s}
+    /* ───────────────  HERO  ─────────────── */
+    .hero{
+      position:relative;padding:7rem 2rem 6rem;text-align:center;overflow:hidden;
+      background:linear-gradient(135deg,#002525 0%,#003b35 40%,#004f45 100%);
+    }
+    .hero h1{
+      font-size:3.5rem;font-weight:700;
+      display:flex;flex-direction:column;align-items:center;gap:1rem;
+    }
+    .hero-logo{width:120px;height:120px}                   /* jumbo logo */
+    .hero p{font-size:1.25rem;margin-top:1rem;max-width:760px;margin-inline:auto;color:var(--fg-muted)}
 
-/* -------------  HERO ------------- */
-.hero{
-  position:relative;text-align:center;padding:7rem 1.7rem 8rem;
-  background:linear-gradient(130deg,#192c45 0%,#112033 60%,#0d1b2a 100%);
-  overflow:hidden
-}
-.hero img.hero-logo{width:240px;height:auto;margin:0 auto 1.8rem}
-.hero h1{font-size:2.9rem;font-weight:700;margin-bottom:1rem;line-height:1.15}
-.hero p{max-width:780px;margin:0 auto;font-size:1.15rem;color:var(--muted)}
+    /* floating geometric accents */
+    .shape{position:absolute;border-radius:50%;opacity:.15;animation:float 10s ease-in-out infinite}
+    .shape.xl{width:320px;height:320px;background:var(--accent-sec)}
+    .shape.lg{width:220px;height:220px;background:var(--accent)}
+    .shape.sm{width:140px;height:140px;background:#ffffff}
+    .shape.one{top:-60px;left:-80px}
+    .shape.two{bottom:-80px;right:-60px}
+    .shape.three{top:40%;right:10%}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(30px)}100%{transform:translateY(0)}}
 
-/* = decorative shapes (low-contrast) = */
-.shape{position:absolute;border-radius:50%;background:rgba(94,96,206,.16);filter:blur(4px);
-   animation:float 14s infinite ease-in-out}
-.s1{width:320px;height:320px;top:-110px;left:-140px;animation-delay:0s}
-.s2{width:180px;height:180px;bottom:-70px;right:-70px;animation-delay:3s}
-.s3{width:110px;height:110px;bottom:190px;left:20%;animation-delay:6s}
-@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(35px)}100%{transform:translateY(0)}}
+    /* ───────────────  SECTIONS  ─────────────── */
+    section{
+      max-width:1100px;margin:4rem auto;background:var(--bg-card);
+      padding:3rem 2rem;border-radius:var(--border-radius);
+      box-shadow:0 6px 18px rgba(0,0,0,.4);opacity:0;transform:translateY(50px);
+      transition:all .8s cubic-bezier(.17,.84,.44,1);
+    }
+    section.visible{opacity:1;transform:translateY(0)}
+    h2{font-size:2.1rem;margin-bottom:1rem;color:var(--accent)}
+    .placeholder{font-style:italic;color:var(--fg-muted);border:1px dashed var(--accent-sec);
+      padding:1.2rem;border-radius:12px;margin-top:1rem}
 
-/* subtle outlined polygons */
-.poly{position:absolute;border:2px solid rgba(0,180,216,.15);transition:12s linear;
-   animation:spin 22s infinite linear}
-.poly.t1{width:95px;height:95px;top:22%;right:11%;border-radius:0 0 0 10px}
-.poly.t2{width:60px;height:60px;bottom:28%;left:45%;border-radius:50%}
-@keyframes spin{to{transform:rotate(1turn)}}
+    /* UL style */
+    section ul{margin-top:1.2rem;padding-left:1.2rem}
+    section li{margin-bottom:.6rem;color:var(--fg-muted)}
 
-/* angled strip under hero for style */
-.hero::after{
-  content:'';position:absolute;bottom:-40px;left:0;width:100%;height:85px;
-  background:var(--bg-alt);transform:skewY(-4deg);transform-origin:0 100%
-}
+    /* ───────────────  ABOUT  ─────────────── */
+    .about-wrap{display:flex;flex-wrap:wrap;gap:2rem;align-items:center}
+    .about-wrap img{width:160px;height:160px;border-radius:50%;object-fit:cover;
+      box-shadow:0 0 20px rgba(0,0,0,.55)}
+    .about-text p{margin-bottom:1rem;color:var(--fg-muted)}
 
-/* -------------  CARDS DECORATIVE BAR ------------- */
-section::before{
-  content:'';position:absolute;top:0;left:0;width:100%;height:5px;border-radius:var(--radius) var(--radius) 0 0;
-  background:linear-gradient(90deg,var(--p1),var(--p2),var(--p3))
-}
+    /* ───────────────  FAQ  ─────────────── */
+    details{background:#1b222c;border-radius:10px;padding:1rem;margin-bottom:.8rem}
+    details[open]{background:#222b36}
+    summary{cursor:pointer;font-weight:600;color:var(--accent)}
+    details p{margin-top:.6rem;color:var(--fg-muted)}
 
-/* -------------  SMALL UTILITIES ------------- */
-.placeholder{color:var(--muted);font-style:italic}
-.center{text-align:center}
-
-/* Counters example */
-.counter-box{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1.5rem;margin:2rem 0}
-.counter{background:#17304a;padding:1.5rem;border-radius:var(--radius);text-align:center}
-.counter strong{font-size:2rem;color:var(--p1);display:block}
-.counter span{font-size:.9rem;color:var(--muted)}
-
-/* Progress bar demo */
-.progress-wrap{margin:1.8rem 0}
-.progress-title{display:flex;justify-content:space-between;font-size:.9rem;color:var(--muted)}
-.progress{
-  height:10px;background:#112540;border-radius:20px;overflow:hidden;margin-top:.4rem
-}
-.progress > div{height:100%;background:var(--p1);width:70%;}
-
-/* Accordion (FAQ) */
-.accordion{margin-top:2.3rem}
-.accordion-item{border:1px solid #233b55;border-radius:var(--radius);margin-bottom:1rem;overflow:hidden}
-.accordion-header{
-  background:#152a42;padding:1rem;cursor:pointer;font-weight:600;
-  display:flex;justify-content:space-between;align-items:center
-}
-.accordion-header span{font-size:1.3rem;transition:.35s}
-.accordion-body{max-height:0;overflow:hidden;transition:max-height .5s;padding:0 1rem}
-.accordion-body p{padding:1rem 0;color:var(--muted)}
-
-/* Back-to-top */
-#topBtn{position:fixed;bottom:26px;right:26px;background:var(--p1);color:#fff;border:none;
-  padding:.75rem;border-radius:50%;font-size:1.25rem;cursor:pointer;display:none;box-shadow:var(--shadow);z-index:998}
-
-/* Footer */
-footer{padding:2.5rem;text-align:center;color:var(--muted);font-size:.9rem}
-
-/* Responsive nav */
-@media(max-width:920px){
-  nav{position:fixed;inset:0 0 0 40%;flex-direction:column;padding-top:5rem;gap:.4rem;
-      background:var(--bg-alt);transform:translateX(100%);transition:.4s}
-  nav.open{transform:translateX(0)}
-  nav a{padding:1rem 2rem}
-  .burger{display:flex}
-}
-</style>
+    /* ───────────────  FOOTER  ─────────────── */
+    footer{text-align:center;padding:2.5rem 1rem;color:var(--fg-muted)}
+  </style>
 </head>
 <body>
-
-<!-- =========== HEADER =========== -->
-<header>
-  <div class="logo-bar">
-    <img src="logo.png" alt="Future Finance MD logo">
-    <span>Future&nbsp;Finance&nbsp;MD</span>
-  </div>
-
-  <nav id="nav">
-    <a href="#wealth">Wealth</a><a href="#insurance">Insurance</a><a href="#pension">Retirement</a>
-    <a href="#billing">Billing</a><a href="#incorp">Incorporation</a><a href="#debt">Debt</a>
-    <a href="#tax">Tax</a><a href="#estate">Estate</a><a href="#tools">Tools</a>
-    <a href="#about">About</a><a href="#intl">International</a>
-  </nav>
-
-  <button class="toggle" onclick="toggleTheme()">Theme</button>
-  <div class="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
-</header>
-
-<!-- =========== HERO =========== -->
-<section class="hero">
-  <img src="logo.png" alt="Future Finance MD logo" class="hero-logo">
-  <h1>Financial Clarity for<br>Healthcare Professionals</h1>
-  <p>Evidence-based strategies, calculators, and resources designed by physicians for physicians.</p>
-
-  <!-- subtle shapes -->
-  <span class="shape s1"></span><span class="shape s2"></span><span class="shape s3"></span>
-  <span class="poly t1"></span><span class="poly t2"></span>
-</section>
-
-<!-- =========== DISCLAIMER =========== -->
-<section><strong>Disclaimer&nbsp;</strong>Educational content only — no personalized financial, tax, or legal advice.</section>
-
-<!-- =========== MAIN CONTENT PLACEHOLDERS =========== -->
-<section id="wealth"><h2>Wealth Management</h2><!-- PASTE TEXT HERE --></section>
-<section id="insurance"><h2>Insurance</h2><!-- PASTE TEXT HERE --></section>
-<section id="pension"><h2>Pension &amp; Retirement</h2><!-- PASTE TEXT HERE --></section>
-<section id="billing"><h2>Billing &amp; Revenue</h2><!-- PASTE TEXT HERE --></section>
-<section id="incorp"><h2>Incorporation</h2><!-- PASTE TEXT HERE --></section>
-<section id="debt"><h2>Debt Management</h2><!-- PASTE TEXT HERE --></section>
-<section id="tax"><h2>Tax Planning</h2><!-- PASTE TEXT HERE --></section>
-<section id="estate"><h2>Estate Planning</h2><!-- PASTE TEXT HERE --></section>
-
-<!-- Example stats counters (feel free to delete) -->
-<section class="center">
-  <h2>Our Impact</h2>
-  <div class="counter-box">
-    <div class="counter"><strong data-count="4200">0</strong><span>Clinicians helped</span></div>
-    <div class="counter"><strong data-count="650M">$0</strong><span>Assets analysed</span></div>
-    <div class="counter"><strong data-count="38">0</strong><span>Workshops hosted</span></div>
-  </div>
-</section>
-
-<!-- Tools & FAQ -->
-<section id="tools">
-  <h2>Financial Literacy &amp; Tools</h2><!-- PASTE TEXT HERE -->
-
-  <!-- progress example -->
-  <div class="progress-wrap">
-    <div class="progress-title"><span>Retirement goal</span><span>70 %</span></div>
-    <div class="progress"><div></div></div>
-  </div>
-
-  <!-- FAQ accordion -->
-  <div class="accordion">
-    <div class="accordion-item">
-      <div class="accordion-header">What is Future Finance MD?<span>+</span></div>
-      <div class="accordion-body"><p>An independent, physician-run hub delivering unbiased money education – no ads, no hidden commissions.</p></div>
+  <!-- ───────────── HEADER ───────────── -->
+  <header>
+    <div class="brand-wrap">
+      <img src="logo.png" alt="Future Finance MD logo" class="hero-logo">
+      <span class="brand-title">Future&nbsp;Finance&nbsp;MD</span>
     </div>
-    <div class="accordion-item">
-      <div class="accordion-header">Is the content Canada-only?<span>+</span></div>
-      <div class="accordion-body"><p>No.  Core strategies are universal; dedicated regional notes (US, UK, AUS, GCC) sit under <em>International Guidance</em>.</p></div>
+    <nav>
+      <a href="#wealth">Wealth</a>
+      <a href="#insurance">Insurance</a>
+      <a href="#pension">Retirement</a>
+      <a href="#billing">Billing</a>
+      <a href="#incorporation">Incorporation</a>
+      <a href="#debt">Debt</a>
+      <a href="#tax">Tax</a>
+      <a href="#estate">Estate</a>
+      <a href="#tools">Tools</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <button class="toggle-btn" onclick="document.body.classList.toggle('light')">Toggle&nbsp;Theme</button>
+  </header>
+
+  <!-- ───────────── HERO ───────────── -->
+  <section class="hero" id="home">
+    <div class="shape xl one"></div>
+    <div class="shape lg two"></div>
+    <div class="shape sm three"></div>
+
+    <h1>
+      <img src="logo.png" alt="Future Finance MD" class="hero-logo">
+      Future Finance MD
+    </h1>
+    <p>Actionable finance insights for medical &amp; health-science students, residents, and clinicians—minus the jargon.</p>
+  </section>
+
+  <!-- ───────────── DISCLAIMER ───────────── -->
+  <section class="disclaimer">
+    <strong>Disclaimer&nbsp;•</strong> Educational content only. This site does not provide personalized financial, tax, or legal advice.
+  </section>
+
+  <!-- ───────────── CONTENT SECTIONS (place your text) ───────────── -->
+  <section id="wealth">
+    <h2>Wealth&nbsp;Management</h2>
+    <div class="placeholder">PASTE TEXT HERE</div>
+  </section>
+
+  <section id="insurance">
+    <h2>Insurance</h2>
+    <div class="placeholder">PASTE TEXT HERE</div>
+  </section>
+
+  <section id="pension">
+    <h2>Pension&nbsp;&amp;&nbsp;Retirement</h2>
+    <div class="placeholder">PASTE TEXT HERE</div>
+  </section>
+
+  <section id="billing">
+    <h2>Billing&nbsp;&amp;&nbsp;Revenue</h2>
+    <div class="placeholder">PASTE TEXT HERE</div>
+  </section>
+
+  <section id="incorporation">
+    <h2>Incorporation</h2>
+    <div class="placeholder">PASTE TEXT HERE</div>
+  </section>
+
+  <section id="debt">
+    <h2>Debt&nbsp;Management</h2>
+    <div class="placeholder">PASTE TEXT HERE</div>
+  </section>
+
+  <section id="tax">
+    <h2>Tax&nbsp;Planning</h2>
+    <div class="placeholder">PASTE TEXT HERE</div>
+  </section>
+
+  <section id="estate">
+    <h2>Estate&nbsp;Planning</h2>
+    <div class="placeholder">PASTE TEXT HERE</div>
+  </section>
+
+  <section id="tools">
+    <h2>Financial&nbsp;Literacy&nbsp;&amp;&nbsp;Tools</h2>
+    <div class="placeholder">PASTE TEXT HERE</div>
+  </section>
+
+  <!-- ───────────── ABOUT ───────────── -->
+  <section id="about">
+    <h2>About&nbsp;the&nbsp;Author</h2>
+    <div class="about-wrap">
+      <img src="me.jpeg" alt="Salem Elfirjani">
+      <div class="about-text">
+        <p><strong>Salem Elfirjani</strong> is a Biomedical Science student at the University of Guelph and a member&nbsp;&amp;&nbsp;writer with <em>STEM Fellowship</em>. He’s fascinated by the crossroads of healthcare, technology, and personal finance—and created Future Finance MD to make money conversations in medicine approachable for everyone.</p>
+        <p>From dissecting studies in class to dissecting tax codes in spare hours, Salem enjoys translating complex topics into plain English. Outside the screen you’ll find him volunteering at community clinics, brewing specialty coffee, or building the next side-project that blends science and finance.</p>
+      </div>
     </div>
-    <div class="accordion-item">
-      <div class="accordion-header">Can you manage my portfolio?<span>+</span></div>
-      <div class="accordion-body"><p>We do not manage assets.  Instead, we help you vet fiduciary planners and understand their recommendations.</p></div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <h2>About&nbsp;the&nbsp;Author</h2>
-  <p>Dr&nbsp;S. Elfirjani, an Ontario-based physician, paid off six-figure med-school debt and discovered a passion for personal finance along the way.  After completing advanced coursework in tax &amp; planning, he created Future Finance MD to demystify money for colleagues worldwide.</p>
-  <p>He partners with CFPs, CPAs, and lawyers to keep advice accurate and product-agnostic.  Outside clinic hours he’s a die-hard trail-runner, espresso nerd, and dad of two.</p>
-</section>
+  <!-- ───────────── FAQ ───────────── -->
+  <section id="faq">
+    <h2>Frequently&nbsp;Asked&nbsp;Questions</h2>
 
-<!-- International -->
-<section id="intl"><h2>International Guidance</h2><!-- PASTE TEXT HERE --></section>
+    <details>
+      <summary>Is this site only for physicians?</summary>
+      <p>No. While many examples mention doctors, the frameworks apply to nurses, pharmacists, allied-health professionals, med-students, and anyone working in the health ecosystem.</p>
+    </details>
 
-<!-- FOOTER -->
-<footer>
-  © 2025 Future Finance MD&nbsp;•&nbsp;Empowering healthcare heroes to master their money.
-</footer>
+    <details>
+      <summary>Do I need to incorporate as soon as I graduate?</summary>
+      <p>Usually not. Incorporation pays off once your net income comfortably exceeds living costs—otherwise the admin fees may outweigh tax savings. A good accountant can model break-even points for your specialty and province/state.</p>
+    </details>
 
-<!-- Back-to-top -->
-<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+    <details>
+      <summary>Where should I start if I’m overwhelmed?</summary>
+      <p>Begin with cash-flow: track spending for one month, build an emergency fund, and automate savings into tax-advantaged accounts. Small wins compound; you can layer billing, investing, and tax strategies later.</p>
+    </details>
+  </section>
 
-<!-- ===========  SCRIPTS  =========== -->
-<script>
-/* Reveal on scroll */
-const revealObs=new IntersectionObserver(e=>e.forEach(el=>el.isIntersecting&&el.target.classList.add('reveal')),
-  {threshold:.12});
-document.querySelectorAll('section').forEach(s=>revealObs.observe(s));
+  <!-- ───────────── FOOTER ───────────── -->
+  <footer>
+    <p>&copy;&nbsp;2025&nbsp;Future Finance MD • Built by Salem Elfirjani</p>
+  </footer>
 
-/* Theme toggle (simply flips body class for demo-purposes) */
-function toggleTheme(){document.body.classList.toggle('light')}
-document.body.classList.remove('light'); /* start dark */
-
-/* Mobile nav */
-const nav=document.getElementById('nav'),burger=document.querySelector('.burger');
-function toggleMenu(){
-  nav.classList.toggle('open');burger.classList.toggle('open');
-  burger.querySelectorAll('span').forEach((bar,i)=>bar.style.transform=
-    burger.classList.contains('open')
-      ?['rotate(45deg) translateY(8px)','scale(0)','rotate(-45deg) translateY(-8px)'][i]
-      :'none');
-}
-nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.contains('open')&&toggleMenu()));
-burger&&burger.addEventListener('click',toggleMenu);
-
-/* Active link highlight */
-const links=[...nav.querySelectorAll('a')],secs=links.map(l=>document.querySelector(l.hash));
-window.addEventListener('scroll',()=>{
-  let i=secs.length;while(--i&&scrollY+120<secs[i].offsetTop){}
-  links.forEach(l=>l.classList.remove('active'));links[i]?.classList.add('active');
-});
-
-/* Back-to-top visibility */
-const topBtn=document.getElementById('topBtn');
-window.addEventListener('scroll',()=>{topBtn.style.display=scrollY>460?'block':'none'});
-
-/* Accordion toggle */
-document.querySelectorAll('.accordion-header').forEach(h=>h.addEventListener('click',()=>{
-  const body=h.nextElementSibling,open=body.style.maxHeight;
-  document.querySelectorAll('.accordion-body').forEach(b=>b.style.maxHeight=null);
-  document.querySelectorAll('.accordion-header span').forEach(s=>s.textContent='+');
-  if(!open){body.style.maxHeight=body.scrollHeight+'px';h.querySelector('span').textContent='–'}
-}));
-
-/* Simple counter animation */
-document.querySelectorAll('[data-count]').forEach(el=>{
-  const tgt=+el.dataset.count;let cur=0,dur=1500,step=Math.ceil(tgt/(dur/18));
-  const timer=setInterval(()=>{cur+=step;el.textContent=cur>=tgt?tgt:cur;cur>=tgt&&clearInterval(timer)},18);
-});
-</script>
+  <!-- ───────────── JS ───────────── -->
+  <script>
+    /* fade-in on scroll */
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+    },{threshold:0.15});
+    document.querySelectorAll('section').forEach(s=>io.observe(s));
+  </script>
 </body>
 </html>
