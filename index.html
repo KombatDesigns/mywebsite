@@ -3,267 +3,280 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WealthMD | Smarter Finance for Healthcare</title>
+  <title>Future Finance MD | Smarter Money for Healthcare</title>
+
+  <!---- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --bg: #f8f9fa;
-      --fg: #1e1e1e;
-      --accent: #00796b;
-      --subtle: #eff5f5;
-      --card: #ffffff;
-      --text-muted: #555;
-    }
-    .dark-mode {
-      --bg: #121212;
-      --fg: #f0f0f0;
-      --accent: #00e0b8;
-      --subtle: #1a1a1a;
-      --card: #1e1e1e;
-      --text-muted: #ccc;
-    }
+  :root{
+    --bg:#f7fafc; --fg:#1e1e1e; --accent:#00796b; --card:#ffffff;
+    --subtle:#eff5f5; --muted:#555; --radius:12px; --shadow:0 6px 24px rgba(0,0,0,.06)
+  }
+  body.dark{
+    --bg:#121212; --fg:#f0f0f0; --accent:#00e0b8; --card:#1e1e1e;
+    --subtle:#1a1a1a; --muted:#bbbbbb; --shadow:0 6px 24px rgba(0,0,0,.3)
+  }
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--fg);
-      scroll-behavior: smooth;
-      transition: background 0.5s ease, color 0.5s ease;
-    }
+  /*-- Global --*/
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);
+    line-height:1.6;transition:.4s background,.4s color;min-height:100vh
+  }
+  img{max-width:100%;display:block}
 
-    header {
-      background: var(--card);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+  /*-- Header / Nav --*/
+  header{
+    position:sticky;top:0;z-index:999;background:var(--card);box-shadow:var(--shadow);
+    display:flex;align-items:center;justify-content:space-between;padding:.8rem 1.6rem
+  }
+  .logo{display:flex;align-items:center;gap:.6rem;font-weight:700;color:var(--accent)}
+  .logo img{height:32px;width:auto}
+  nav{display:flex;gap:1.1rem;font-weight:600}
+  nav a{color:var(--muted);text-decoration:none;position:relative}
+  nav a::after{
+    content:'';position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--accent);
+    transition:.3s
+  }
+  nav a:hover::after,nav a.active::after{width:100%}
+  .toggle{
+    border:none;background:var(--accent);color:#fff;padding:.4rem .9rem;border-radius:6px;
+    cursor:pointer;font-weight:600
+  }
+  /*-- Burger for mobile --*/
+  .burger{display:none;width:26px;height:20px;flex-direction:column;justify-content:space-between;cursor:pointer}
+  .burger span{height:3px;width:100%;background:var(--accent);border-radius:3px;transition:.3s}
 
-    header h1 {
-      font-size: 1.8rem;
-      color: var(--accent);
-    }
+  /*-- Hero --*/
+  .hero{
+    background:linear-gradient(135deg,var(--accent),#26a69a);
+    color:#fff;text-align:center;padding:5rem 1.5rem;overflow:hidden
+  }
+  .hero h1{font-size:2.6rem;font-weight:700;margin-bottom:.6rem}
+  .hero p{font-size:1.15rem;max-width:700px;margin-inline:auto}
+  /* circles */
+  .circle{
+    position:absolute;border-radius:50%;background:rgba(255,255,255,.06);animation:float 12s infinite ease-in-out
+  }
+  .c1{width:240px;height:240px;top:-60px;right:-60px}
+  .c2{width:120px;height:120px;bottom:-40px;left:-40px;animation-delay:4s}
+  @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(30px)}100%{transform:translateY(0)}}
 
-    nav a {
-      margin: 0 1rem;
-      text-decoration: none;
-      color: var(--text-muted);
-      font-weight: 600;
-      position: relative;
-    }
+  /*-- Sections --*/
+  section{
+    max-width:1000px;margin:3.2rem auto;padding:2.8rem 1.6rem;background:var(--card);
+    border-radius:var(--radius);box-shadow:var(--shadow);opacity:0;transform:translateY(40px);
+    transition:.8s
+  }
+  section.visible{opacity:1;transform:translateY(0)}
+  h2{font-size:1.9rem;color:var(--accent);margin-bottom:1.2rem}
+  .placeholder{color:var(--muted);font-style:italic}
 
-    nav a::after {
-      content: '';
-      position: absolute;
-      width: 0%;
-      height: 2px;
-      bottom: -4px;
-      left: 0;
-      background-color: var(--accent);
-      transition: 0.3s;
-    }
-    nav a:hover::after {
-      width: 100%;
-    }
+  /*-- Accordion (FAQ template) --*/
+  .accordion{margin-top:1.8rem}
+  .accordion-item{border:1px solid var(--subtle);border-radius:var(--radius);margin-bottom:.8rem;overflow:hidden}
+  .accordion-header{background:var(--subtle);padding:1rem;cursor:pointer;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+  .accordion-body{max-height:0;overflow:hidden;transition:max-height .4s;padding:0 1rem}
+  .accordion-body p{padding:1rem 0}
 
-    .theme-toggle {
-      padding: 0.4rem 0.8rem;
-      background: var(--accent);
-      border: none;
-      border-radius: 6px;
-      color: #fff;
-      font-weight: 600;
-      cursor: pointer;
-    }
+  /*-- Back-to-top button --*/
+  #topBtn{
+    position:fixed;bottom:24px;right:24px;background:var(--accent);color:#fff;border:none;
+    padding:.7rem .9rem;border-radius:50%;font-size:1.1rem;cursor:pointer;display:none;
+    box-shadow:var(--shadow);z-index:998
+  }
+  /*-- Footer --*/
+  footer{padding:2rem;text-align:center;color:var(--muted)}
 
-    .hero {
-      background: linear-gradient(135deg, var(--accent), #26a69a);
-      color: white;
-      text-align: center;
-      padding: 5rem 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 300px;
-      height: 300px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 50%;
-      animation: float 8s infinite ease-in-out;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(20px); }
-      100% { transform: translateY(0); }
-    }
-
-    .hero h2 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      animation: fadeInUp 1.5s ease forwards;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: auto;
-      animation: fadeInUp 2s ease forwards;
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    section {
-      padding: 4rem 2rem;
-      max-width: 1000px;
-      margin: auto;
-      background: var(--card);
-      margin-top: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease;
-    }
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    h2 {
-      font-size: 2rem;
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
-    p {
-      margin-bottom: 1.2rem;
-      color: var(--text-muted);
-    }
-    .disclaimer {
-      background: var(--subtle);
-      padding: 1rem;
-      border-left: 4px solid crimson;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      color: #b30000;
-      margin-bottom: 2rem;
-    }
-    .profile-img {
-      max-width: 150px;
-      border-radius: 50%;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
-      margin-bottom: 1rem;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: var(--text-muted);
-    }
+  /*-- Responsive nav --*/
+  @media(max-width:850px){
+    nav{position:fixed;inset:0 0 0 40%;flex-direction:column;padding-top:4rem;background:var(--card);
+        translate:100%;transition:.4s}
+    nav.open{translate:0}
+    nav a{padding:1rem}
+    .burger{display:flex}
+  }
   </style>
 </head>
 <body>
+
+  <!---- Header -->
   <header>
-    <h1>WealthMD</h1>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#finance">Finance</a>
+    <div class="logo">
+      <img src="logo.png" alt="Future Finance MD logo">
+      Future&nbsp;Finance&nbsp;MD
+    </div>
+
+    <nav id="nav">
+      <a href="#wealth"  >Wealth</a>
       <a href="#insurance">Insurance</a>
-      <a href="#pension">Pensions</a>
-      <a href="#billing">Billing</a>
-      <a href="#incorporation">Incorporation</a>
-      <a href="#debt">Debt Management</a>
-      <a href="#resources">Resources</a>
-      <a href="#about">About</a>
+      <a href="#pension"  >Retirement</a>
+      <a href="#billing"  >Billing</a>
+      <a href="#incorp"   >Incorporation</a>
+      <a href="#debt"     >Debt</a>
+      <a href="#tax"      >Tax</a>
+      <a href="#estate"   >Estate</a>
+      <a href="#tools"    >Tools</a>
+      <a href="#about"    >About</a>
+      <a href="#intl"     >International</a>
     </nav>
-    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+
+    <button class="toggle" onclick="toggleTheme()">Theme</button>
+    <div class="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
   </header>
 
-  <div class="hero" id="home">
-    <h2>Smarter Financial Advice for Healthcare Professionals</h2>
-    <p>WealthMD helps doctors, nurses, and health workers navigate the world of personal finance, pensions, insurance, and business planning — with clarity and simplicity.</p>
-  </div>
+  <!---- Hero -->
+  <section class="hero">
+    <h1>Smart Money Guidance for Healthcare Professionals</h1>
+    <p>A clean, distraction-free template.  Replace each placeholder with your own content and launch!</p>
+    <span class="circle c1"></span><span class="circle c2"></span>
+  </section>
 
-  <main>
-    <section class="disclaimer">
-      <strong>Disclaimer:</strong> This website is for educational purposes only. I am not a licensed financial planner. All content is curated to help healthcare professionals become more informed and empowered to seek trusted advice.
-    </section>
+  <!---- DISCLAIMER (optional) -->
+  <section>
+    <strong>Disclaimer:</strong> Educational content only — not individualized financial advice.
+  </section>
 
-    <section id="finance">
-      <h2>Wealth Management</h2>
-      <p>Financial literacy is key to long-term security. Begin by building an emergency fund that covers 3–6 months of expenses. Use budgeting tools like YNAB or Mint to track spending. Contribute early to RRSPs and TFSAs to benefit from tax-sheltered growth. As income rises, consider asset diversification: ETFs, GICs, mutual funds, and later, real estate or private equity.</p>
-    </section>
+  <!---- 1. Wealth Management -->
+  <section id="wealth">
+    <h2>Wealth Management</h2>
+    <!-- YOUR CONTENT HERE -->
+    <p class="placeholder">Paste your Wealth Management text here…</p>
+  </section>
 
-    <section id="insurance">
-      <h2>Insurance for Health Professionals</h2>
-      <p>Protecting your income is non-negotiable. Start with long-term disability insurance early — the younger you are, the cheaper the premium. Supplement this with life and critical illness insurance. For physicians, consider OMA Insurance. For nurses and allied health, check with professional associations for group rates. Always read the fine print.</p>
-    </section>
+  <!---- 2. Insurance -->
+  <section id="insurance">
+    <h2>Insurance</h2>
+    <!-- YOUR CONTENT HERE -->
+    <p class="placeholder">Paste your Insurance text here…</p>
+  </section>
 
-    <section id="pension">
-      <h2>Pension Planning</h2>
-      <p>HOOPP and OMERS offer defined benefit pensions with stable retirement income. Contributions are matched by your employer and benefits scale with years of service. Understand vesting periods and early withdrawal penalties. Not in a pension plan? Set up an Individual Pension Plan (IPP) or Personal Retirement Savings Plan (RRSP) as your fallback.</p>
-    </section>
+  <!---- 3. Pension & Retirement -->
+  <section id="pension">
+    <h2>Pension &amp; Retirement</h2>
+    <!-- YOUR CONTENT HERE -->
+    <p class="placeholder">Paste your Pension / Retirement text here…</p>
+  </section>
 
-    <section id="billing">
-      <h2>Ontario Billing</h2>
-      <p>Accurate billing with OHIP is essential for physicians. Use platforms like Dr. Bill or MDBilling.ca for real-time code lookup and claim tracking. Stay updated with Schedule of Benefits changes. Understand audit triggers and always document clearly. For new physicians, consider a billing agent until you're confident with self-billing.</p>
-    </section>
+  <!---- 4. Billing & Revenue -->
+  <section id="billing">
+    <h2>Billing &amp; Revenue</h2>
+    <!-- YOUR CONTENT HERE -->
+    <p class="placeholder">Paste your Billing & Revenue text here…</p>
+  </section>
 
-    <section id="incorporation">
-      <h2>Should You Incorporate?</h2>
-      <p>Incorporating can reduce taxes through income splitting, retained earnings, and dividend strategies. However, it's only beneficial above certain income thresholds. Speak to an accountant to understand if it fits your situation. Consider professional corporations in Ontario and review CPA Canada's guidelines.</p>
-    </section>
+  <!---- 5. Incorporation -->
+  <section id="incorp">
+    <h2>Incorporation</h2>
+    <!-- YOUR CONTENT HERE -->
+    <p class="placeholder">Paste your Incorporation text here…</p>
+  </section>
 
-    <section id="debt">
-      <h2>Student Loans & Debt Management</h2>
-      <p>Repaying OSAP or bank loans? Focus on high-interest debt first. Consider refinancing for lower rates. Automate payments, avoid minimum-only strategies. As income stabilizes, use the 'snowball' or 'avalanche' methods. Don’t ignore loans post-residency — interest grows fast.</p>
-    </section>
+  <!---- 6. Debt Management -->
+  <section id="debt">
+    <h2>Debt Management</h2>
+    <!-- YOUR CONTENT HERE -->
+    <p class="placeholder">Paste your Debt Management text here…</p>
+  </section>
 
-    <section id="resources">
-      <h2>Financial Resources & Calculators</h2>
-      <p>Use the following tools to estimate your financial options:</p>
-      <ul>
-        <li><a href="https://www.oma.org/insurance/">OMA Insurance Resources</a></li>
-        <li><a href="https://www.hoopp.com">HOOPP Pension Site</a></li>
-        <li><a href="https://drbill.ca">Dr. Bill OHIP Billing</a></li>
-        <li><a href="https://www.sunlife.ca/en/tools/retirement-calculator/">Sun Life Retirement Calculator</a></li>
-        <li><a href="https://www.canada.ca/en/services/taxes/income-tax/personal-income-tax.html">CRA Tax Tools</a></li>
-      </ul>
-    </section>
+  <!---- 7. Tax Planning -->
+  <section id="tax">
+    <h2>Tax Planning</h2>
+    <!-- YOUR CONTENT HERE -->
+    <p class="placeholder">Paste your Tax Planning text here…</p>
+  </section>
 
-    <section id="about">
-      <h2>About Salem Elfirjani</h2>
-      <img src="me.jpeg" alt="Salem Elfirjani" class="profile-img">
-      <p>I’m a biomedical sciences student passionate about empowering healthcare workers to make better financial choices. This platform is a curated effort to simplify and modernize personal finance education for professionals like you.</p>
-    </section>
-  </main>
+  <!---- 8. Estate Planning -->
+  <section id="estate">
+    <h2>Estate Planning</h2>
+    <!-- YOUR CONTENT HERE -->
+    <p class="placeholder">Paste your Estate Planning text here…</p>
+  </section>
 
+  <!---- 9. Financial Literacy & Tools (with sample FAQ accordion) -->
+  <section id="tools">
+    <h2>Financial Literacy &amp; Tools</h2>
+    <!-- YOUR CONTENT HERE -->
+    <p class="placeholder">Paste your Tools text here…</p>
+
+    <!-- Sample collapsible FAQ -->
+    <div class="accordion">
+      <div class="accordion-item">
+        <div class="accordion-header">Sample FAQ Question</div>
+        <div class="accordion-body"><p>Replace or duplicate this accordion for quick-toggle FAQs.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!---- 10. About the Author -->
+  <section id="about">
+    <h2>About the Author</h2>
+    <!-- YOUR CONTENT HERE -->
+    <p class="placeholder">Paste your About text here…</p>
+  </section>
+
+  <!---- 11. International Guidance -->
+  <section id="intl">
+    <h2>International Guidance</h2>
+    <!-- YOUR CONTENT HERE -->
+    <p class="placeholder">Paste your International Guidance text here…</p>
+  </section>
+
+  <!---- Footer -->
   <footer>
-    <p>© 2025 WealthMD • Designed by Salem Elfirjani • Built for healthcare professionals</p>
+    © 2025 Future Finance MD • Empowering Healthcare Professionals
   </footer>
 
-  <script>
-    const sections = document.querySelectorAll('section');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.1 });
-    sections.forEach(section => observer.observe(section));
+  <!---- Back-to-top button -->
+  <button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-    function toggleTheme() {
-      document.body.classList.toggle('dark-mode');
-    }
+  <script>
+  /* Intersection reveal */
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}})
+  },{threshold:.12});
+  document.querySelectorAll('section').forEach(s=>obs.observe(s));
+
+  /* Dark / light theme */
+  function toggleTheme(){document.body.classList.toggle('dark');}
+
+  /* Back-to-top visibility */
+  const topBtn=document.getElementById('topBtn');
+  window.addEventListener('scroll',()=>{topBtn.style.display=window.scrollY>400?'block':'none'});
+
+  /* Mobile menu */
+  const nav=document.getElementById('nav'),burger=document.querySelector('.burger');
+  function toggleMenu(){
+    nav.classList.toggle('open');burger.classList.toggle('open');
+    burger.querySelectorAll('span').forEach((bar,i)=>bar.style.transform=
+      burger.classList.contains('open')
+        ?['rotate(45deg) translateY(8px)','scale(0)','rotate(-45deg) translateY(-8px)'][i]
+        :'none');
+  }
+  /* Close menu when link clicked (mobile) */
+  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{if(nav.classList.contains('open'))toggleMenu()}));
+
+  /* Active link highlight on scroll */
+  const links=[...nav.querySelectorAll('a')];
+  const sectionIds=links.map(l=>document.querySelector(l.getAttribute('href')));
+  window.addEventListener('scroll',()=>{
+    let i=sectionIds.length;
+    while(--i&&window.scrollY+90<sectionIds[i].offsetTop){}
+    links.forEach(l=>l.classList.remove('active'));
+    links[i]?.classList.add('active');
+  });
+
+  /* Accordion */
+  document.querySelectorAll('.accordion-header').forEach(h=>{
+    h.addEventListener('click',()=>{
+      const body=h.nextElementSibling;
+      const open=body.style.maxHeight;
+      document.querySelectorAll('.accordion-body').forEach(b=>b.style.maxHeight=null);
+      if(!open) body.style.maxHeight=body.scrollHeight+'px';
+    });
+  });
   </script>
 </body>
 </html>
