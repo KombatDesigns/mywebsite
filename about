@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"><head>…same head…</head><body>
+  <!-- header… -->
+  <main class="container page-content">
+    <h2>About Me</h2>
+    <div class="about-grid">
+      <img src="assets/images/profile.jpg" alt="Salem Elfirjani">
+      <div>
+        <p>I’m <strong>Salem Elfirjani</strong>, a Biomedical Sciences student fascinated by how clinical care and personal finance intersect.</p>
+        <p>I collect and share <strong>trusted</strong>, healthcare-specific finance resources so you can focus on patients.</p>
+        <p><a href="https://ca.linkedin.com/in/salemelfirjani" target="_blank">View my LinkedIn →</a></p>
+      </div>
+    </div>
+  </main>
+  <!-- footer… -->
+  <script src="assets/js/main.js"></script>
+</body></html>
