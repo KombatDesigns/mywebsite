@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"><head>…same head…</head><body>
+  <!-- header… -->
+  <main class="container page-content">
+    <h2>Top Resources</h2>
+    <div class="resources-grid">
+      <div class="resource">
+        <h3>MD Financial Management</h3>
+        <p>Wealth-management & investing advice tailored for physicians and healthcare teams.</p>
+        <a href="https://www.md.ca/" target="_blank">Visit MD Financial</a>
+      </div>
+      <div class="resource">
+        <h3>OMA Member Services</h3>
+        <p>Retirement planning tools, group insurance, and financial seminars via OMA.</p>
+        <a href="https://www.oma.org/member/" target="_blank">Visit OMA</a>
+      </div>
+      <div class="resource">
+        <h3>HOOPP</h3>
+        <p>Ontario Pension Plan for nurses, therapists, and allied professionals.</p>
+        <a href="https://hoopp.com/" target="_blank">Visit HOOPP</a>
+      </div>
+      <div class="resource">
+        <h3>Investopedia</h3>
+        <p>Comprehensive tutorials on investing, retirement accounts, and finance basics.</p>
+        <a href="https://www.investopedia.com/" target="_blank">Visit Investopedia</a>
+      </div>
+    </div>
+  </main>
+  <!-- footer… -->
+  <script src="assets/js/main.js"></script>
+</body></html>
