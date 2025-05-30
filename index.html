@@ -3,19 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Salem Elfirjani | Healthcare × Finance</title>
+  <title>WealthMD | Finance for Healthcare Professionals</title>
   <style>
-    /* Base Reset */
+    :root {
+      --bg: #121212;
+      --fg: #f0f0f0;
+      --accent: #00e0b8;
+      --section-bg: #1e1e1e;
+      --text-muted: #bbb;
+    }
+    .light-mode {
+      --bg: #ffffff;
+      --fg: #111;
+      --accent: #006d5b;
+      --section-bg: #f5f5f5;
+      --text-muted: #333;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #121212;
-      color: #f0f0f0;
+      background: var(--bg);
+      color: var(--fg);
       line-height: 1.6;
+      transition: all 0.4s ease;
     }
 
     header {
-      background: #1a1a1a;
+      background: var(--section-bg);
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
@@ -27,158 +42,201 @@
     }
 
     header h1 {
-      font-size: 1.5rem;
-      color: #fff;
+      font-size: 1.8rem;
+      color: var(--accent);
+      font-weight: bold;
     }
 
     nav a {
-      margin-left: 1.5rem;
+      margin-left: 1.2rem;
       text-decoration: none;
-      color: #ccc;
+      color: var(--text-muted);
       font-weight: 600;
       transition: color 0.3s;
     }
-
     nav a:hover {
-      color: #00e0b8;
+      color: var(--accent);
+    }
+    .theme-toggle {
+      margin-left: 1rem;
+      padding: 0.4rem 0.8rem;
+      background: var(--accent);
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #000;
     }
 
     section {
       padding: 4rem 2rem;
-      max-width: 900px;
+      max-width: 1000px;
       margin: auto;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
     }
-
-    .hero {
-      text-align: center;
-      padding-top: 6rem;
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
-
-    .hero h2 {
-      font-size: 2.5rem;
+    h2 {
+      font-size: 2.2rem;
+      color: var(--accent);
       margin-bottom: 1rem;
     }
-
-    .hero p {
-      font-size: 1.2rem;
-      color: #aaa;
-      margin-bottom: 2rem;
+    p {
+      margin-bottom: 1.25rem;
+      color: var(--text-muted);
     }
-
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background: #00e0b8;
-      color: #000;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    .btn:hover {
-      background: #00c9a0;
-    }
-
-    h3 {
-      margin-top: 2rem;
-      color: #fff;
-    }
-
     .resource {
-      background: #1e1e1e;
-      margin-top: 1.5rem;
+      background: var(--section-bg);
+      margin: 1rem 0;
       padding: 1rem;
-      border-left: 4px solid #00e0b8;
-      border-radius: 5px;
+      border-left: 4px solid var(--accent);
+      border-radius: 6px;
     }
-
     .resource a {
       display: inline-block;
       margin-top: 0.5rem;
-      color: #00e0b8;
+      color: var(--accent);
       font-weight: bold;
     }
-
+    img.profile {
+      max-width: 200px;
+      border-radius: 50%;
+      margin: 2rem 0;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
     footer {
       text-align: center;
       padding: 2rem 1rem;
       color: #666;
       font-size: 0.9rem;
     }
-
-    @media (max-width: 600px) {
-      nav a {
-        margin-left: 1rem;
-      }
-      .hero h2 {
-        font-size: 2rem;
-      }
-    }
+    .hidden { display: none; }
   </style>
 </head>
 <body>
-
   <header>
-    <h1>Salem Elfirjani</h1>
+    <h1>WealthMD</h1>
     <nav>
-      <a href="#home">Home</a>
+      <a href="#intro">Home</a>
+      <a href="#wealth">Wealth</a>
+      <a href="#insurance">Insurance</a>
+      <a href="#legal">Pension & Legal</a>
+      <a href="#billing">Billing</a>
       <a href="#about">About</a>
-      <a href="#resources">Resources</a>
-      <a href="#contact">Contact</a>
+      <a href="#tools">Tools</a>
+      <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
     </nav>
   </header>
 
-  <section class="hero" id="home">
-    <h2>Healthcare Meets Finance</h2>
-    <p>Helping healthcare professionals find trusted financial resources.</p>
-    <a href="#resources" class="btn">Explore Resources</a>
-  </section>
+  <main id="main-content">
+    <section id="intro" class="section">
+      <h2>Welcome to WealthMD</h2>
+      <p>WealthMD is a practical and visually driven financial resource platform built specifically for Canadian healthcare professionals. Whether you're a newly graduated physician or a long-practicing nurse, WealthMD is your starting point for understanding financial tools, pensions, billing systems, insurance coverage, and more. We combine curated external resources with human-readable guidance to help demystify the financial world for people in medicine.</p>
+    </section>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>Hi, I'm <strong>Salem Elfirjani</strong>, a Biomedical Sciences student passionate about the intersection of healthcare and financial literacy. This site was made to give doctors, nurses, and allied professionals a simple, trusted place to start learning about pensions, insurance, and wealth planning — without needing to become experts.</p>
-    <p>You can find more about me on <a href="https://www.linkedin.com/in/salemelfirjani" target="_blank" style="color:#00e0b8;">LinkedIn</a>.</p>
-  </section>
+    <section id="wealth" class="section">
+      <h2>Wealth Management</h2>
+      <p>Wealth management isn't just for the ultra-rich — it’s for everyone who earns a paycheck. For healthcare professionals, financial planning must account for factors like residency income, student debt, long working hours, and eventual burnout. Start with a budget, even a simple one, to track inflow and outflow. From there, contribute to tax-advantaged accounts like RRSPs and TFSAs. These accounts allow your investments to grow without immediate tax implications, and they form the base of long-term wealth.</p>
+      <p>Begin with low-cost index funds. Don’t try to pick stocks unless you understand them well — broad diversification is your friend. Make it automatic with monthly transfers to investment accounts. As income increases, consider speaking to a fee-only financial planner. The earlier you build good habits, the less stressful the future becomes.</p>
+      <div class="resource">
+        <h3>MD Financial Management</h3>
+        <p>Specializes in physician-focused wealth services.</p>
+        <a href="https://www.md.ca" target="_blank">Visit MD Financial</a>
+      </div>
+      <div class="resource">
+        <h3>Investopedia - Wealth Basics</h3>
+        <p>General investment education for beginners.</p>
+        <a href="https://www.investopedia.com" target="_blank">Visit Investopedia</a>
+      </div>
+    </section>
 
-  <section id="resources">
-    <h2>Financial Resources</h2>
+    <section id="insurance" class="section">
+      <h2>Insurance Planning</h2>
+      <p>Insurance is not just about peace of mind — it’s about risk transfer. Disability insurance is especially critical for physicians and other high-income professionals. If you're unable to work due to illness or injury, disability insurance provides monthly income replacement. The younger and healthier you are when you apply, the cheaper and easier it is to qualify. Always read the policy fine print to understand the definition of "disability" and what’s excluded.</p>
+      <p>Other essentials include critical illness insurance (lump sum payout for serious diagnoses), term life insurance (especially if you have dependents), and extended health benefits. Professional organizations often provide group plans with more favorable rates and fewer medical requirements.</p>
+      <div class="resource">
+        <h3>OMA Insurance</h3>
+        <p>Offers flexible disability, life, and critical illness policies to Ontario doctors.</p>
+        <a href="https://www.omainsurance.com" target="_blank">Explore OMA Insurance</a>
+      </div>
+    </section>
 
-    <div class="resource">
-      <h3>MD Financial Management</h3>
-      <p>Wealth-management & investing advice tailored for physicians and medical learners across Canada.</p>
-      <a href="https://www.md.ca" target="_blank">Visit MD Financial</a>
-    </div>
+    <section id="legal" class="section">
+      <h2>Pensions & Legal Considerations</h2>
+      <p>If you work in a hospital or long-term care facility in Ontario, you're likely eligible for the Healthcare of Ontario Pension Plan (HOOPP). This is a defined benefit pension, which means your future retirement income is based on your salary and years of service — not the stock market. Contributions are deducted automatically from your paycheck and matched by your employer. The earlier you start, the more you benefit from compound growth and service credits.</p>
+      <p>If you work privately or are incorporated, you'll need to take responsibility for your own retirement savings through RRSPs, IPPs (Individual Pension Plans), or a corporate investment strategy. Also consider legal safeguards such as a will, power of attorney, and — if incorporated — understanding the rules around retained earnings and tax-efficient withdrawals. Legal and tax advisors play a crucial role here.</p>
+      <div class="resource">
+        <h3>HOOPP Official Site</h3>
+        <p>Learn how your pension grows and how to calculate future retirement income.</p>
+        <a href="https://www.hoopp.com" target="_blank">Visit HOOPP</a>
+      </div>
+      <div class="resource">
+        <h3>OBA – Wills and Estate Law</h3>
+        <p>Information on creating a will, estate planning, and legal tools for physicians.</p>
+        <a href="https://www.oba.org" target="_blank">Visit Ontario Bar Association</a>
+      </div>
+    </section>
 
-    <div class="resource">
-      <h3>OMA Member Services</h3>
-      <p>Ontario Medical Association members have access to exclusive insurance, retirement tools, and advice.</p>
-      <a href="https://www.oma.org/member/" target="_blank">Visit OMA Services</a>
-    </div>
+    <section id="billing" class="section">
+      <h2>Billing in Ontario</h2>
+      <p>OHIP billing is complicated — but manageable. Whether you're a GP or specialist, every encounter needs to be logged with the appropriate code. Submitting incorrect codes or missing deadlines could lead to clawbacks or audits. Thankfully, there are EMR systems and third-party tools that simplify this process. It’s critical to understand your most-used codes and fee modifiers. If you're unsure, start with a billing course or talk to your local medical association.</p>
+      <p>Billing tips: Always document your work clearly. Submit claims frequently to avoid backlogs. Review remittance advice regularly to identify rejected claims or underpayments. You may also delegate billing to trained admin staff — but stay informed and review the numbers yourself.</p>
+      <div class="resource">
+        <h3>OMA Billing Guide</h3>
+        <p>A comprehensive manual on billing rules, fee codes, and submission best practices.</p>
+        <a href="https://www.oma.org/learning/billing" target="_blank">View Billing Guide</a>
+      </div>
+      <div class="resource">
+        <h3>Dr. Bill</h3>
+        <p>An intuitive mobile and web platform that simplifies OHIP billing.</p>
+        <a href="https://www.dr-bill.ca" target="_blank">Use Dr. Bill</a>
+      </div>
+    </section>
 
-    <div class="resource">
-      <h3>HOOPP</h3>
-      <p>Healthcare of Ontario Pension Plan is a leading pension plan for nurses, therapists, and allied workers. Known for its reliability and strong returns.</p>
-      <a href="https://www.hoopp.com" target="_blank">Visit HOOPP</a>
-    </div>
+    <section id="tools" class="section">
+      <h2>Tools & Calculators</h2>
+      <p>When you’re ready to plan ahead, tools like retirement calculators and insurance estimators can give you clarity. These external tools can help project your needs — but they’re only a starting point. A licensed financial planner or accountant should always verify important decisions.</p>
+      <div class="resource">
+        <h3>Sun Life Retirement Calculator</h3>
+        <a href="https://www.sunlife.ca/en/tools/retirement-calculator/" target="_blank">Try Calculator</a>
+      </div>
+      <div class="resource">
+        <h3>Insure.com Estimator</h3>
+        <a href="https://www.insure.com/life-insurance/life-insurance-calculator.html" target="_blank">Estimate Coverage</a>
+      </div>
+    </section>
 
-    <div class="resource">
-      <h3>Investopedia</h3>
-      <p>Detailed explainers on investing, retirement, and financial terms. Great for learning the basics and exploring deeper topics.</p>
-      <a href="https://www.investopedia.com" target="_blank">Visit Investopedia</a>
-    </div>
-  </section>
-
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <p>Got a question or recommendation for a good financial link?</p>
-    <p>Email me at: <a href="mailto:salem.elfirjani@example.com" style="color:#00e0b8;">salem.elfirjani@example.com</a></p>
-    <p>Or message me on <a href="https://www.linkedin.com/in/salemelfirjani" target="_blank" style="color:#00e0b8;">LinkedIn</a>.</p>
-  </section>
+    <section id="about" class="section">
+      <h2>About Me</h2>
+      <img src="me.jpeg" alt="Salem Elfirjani" class="profile">
+      <p>I’m Salem Elfirjani, a Biomedical Sciences student with a deep interest in how healthcare workers can make smarter financial decisions. This site is my attempt to give back to the profession that has given me so much. The advice here is rooted in personal research and peer consultation — and will continue evolving as I do.</p>
+    </section>
+  </main>
 
   <footer>
-    © 2025 Salem Elfirjani — All rights reserved.
+    <p>© 2025 WealthMD • Built by Salem Elfirjani • All rights reserved.</p>
   </footer>
 
+  <script>
+    // Scroll animation
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    sections.forEach(section => observer.observe(section));
+
+    // Theme toggle
+    function toggleTheme() {
+      document.body.classList.toggle('light-mode');
+    }
+  </script>
 </body>
 </html>
