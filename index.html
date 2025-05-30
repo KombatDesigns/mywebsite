@@ -1,104 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Future Finance MD | Smarter Money for Healthcare</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Future Finance MD | Smarter Finance for Healthcare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* ---------- Colour system ----------*/
     :root {
-      --bg-1: #0e1116;   /* main background  */
-      --bg-2: #151b24;   /* card / subtle   */
-      --fg-1: #e6e8eb;   /* main text       */
-      --fg-2: #97a3b4;   /* muted text      */
-      --accent-1: #26a69a; /* teal accent    */
-      --accent-2: #00d1b2; /* brighter tint  */
-      --danger: #e63946;
-      --shadow: rgba(0,0,0,0.35);
+      --bg: #10151c;
+      --fg: #e7ecef;
+      --accent: #17bebb;
+      --accent-2: #007096;
+      --card: #18202a;
+      --muted: #9aa1a8;
+    }
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      scroll-behavior: smooth;
     }
 
-    html,body{
-      margin:0; padding:0;
-      font-family:'Inter',sans-serif;
-      background:var(--bg-1);
-      color:var(--fg-1);
-      scroll-behavior:smooth;
+    /* ---------- Header ---------- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 2rem;
+      background: var(--card);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .logo-wrap img {
+      width: 50px;
+      height: 50px;
+    }
+    .logo-wrap h1 {
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin: 0;
+    }
+    nav a {
+      margin: 0 0.6rem;
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 600;
+      position: relative;
+      transition: color 0.3s;
+    }
+    nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+    nav a:hover {
+      color: var(--fg);
+    }
+    nav a:hover::after {
+      width: 100%;
     }
 
-    /* ---------- Header ----------*/
-    header{
-      position:sticky;top:0;z-index:999;
-      display:flex;justify-content:space-between;align-items:center;
-      padding:0.75rem 2rem;
-      background:var(--bg-2);
-      box-shadow:0 4px 12px var(--shadow);
-    }
-    .logo-wrapper{
-      display:flex;align-items:center;gap:0.75rem;
-    }
-    .logo-wrapper img{width:58px;height:58px;border-radius:50%;object-fit:cover;box-shadow:0 0 12px var(--shadow);}
-    header h1{font-size:1.85rem;font-weight:700;color:var(--accent-2);margin:0;white-space:nowrap;}
-
-    nav a{
-      margin:0 1rem;text-decoration:none;font-weight:600;color:var(--fg-2);position:relative;
-    }
-    nav a::after{content:'';position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--accent-1);transition:width .3s;}
-    nav a:hover{color:var(--accent-2);}nav a:hover::after{width:100%;}
-
-    /* ---------- Hero ----------*/
-    .hero{
-      position:relative;overflow:hidden;text-align:center;padding:7rem 1.5rem;
-      background:radial-gradient(circle at center top,var(--accent-1) 0%,var(--bg-1) 70%);
-      isolation:isolate;
-    }
-    .hero h2{font-size:3rem;margin-bottom:1rem;animation:fadeUp 1.2s cubic-bezier(.16,1.08,.32,1);
-    }
-    .hero p{font-size:1.1rem;max-width:720px;margin:0 auto 1rem;animation:fadeUp 1.6s cubic-bezier(.16,1.08,.32,1);
+    .theme-toggle {
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      padding: 0.4rem 0.9rem;
+      border-radius: 6px;
+      cursor: pointer;
     }
 
-    /* floating geometric shapes */
-    .shape{position:absolute;pointer-events:none;opacity:0.07;border-radius:50%;mix-blend-mode:screen;}
-    .shape.circle{background:var(--accent-2);}/* teal circles*/
-    .shape.square{background:#4f46e5;}/* indigo squares*/
-    .shape.tri{width:0;height:0;border-left:40px solid transparent;border-right:40px solid transparent;border-bottom:70px solid #ff6b6b;opacity:0.05;}
-    @keyframes float{0%{transform:translateY(0);}50%{transform:translateY(-30px);}100%{transform:translateY(0);}}
-    .shape{animation:float var(--dur,8s) ease-in-out infinite;}
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      padding: 6rem 2rem 5rem;
+      text-align: center;
+      background: radial-gradient(circle at 30% 30%, var(--accent-2), transparent 60%),
+        radial-gradient(circle at 70% 60%, rgba(23, 190, 187, 0.4), transparent 60%),
+        var(--bg);
+      overflow: hidden;
+    }
+    .hero h2 {
+      font-size: 3rem;
+      margin: 0 0 1rem;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--muted);
+    }
 
-    /* ---------- Sections ----------*/
-    section{max-width:1100px;margin:3.5rem auto;padding:3rem 2rem;background:var(--bg-2);border-radius:14px;box-shadow:0 6px 26px var(--shadow);opacity:0;transform:translateY(40px);transition:all .9s ease;}
-    section.visible{opacity:1;transform:translateY(0);}  
-    section h2{color:var(--accent-2);font-size:1.7rem;margin-top:0;margin-bottom:1rem;letter-spacing:0.3px;}
-    section p,section li{color:var(--fg-2);line-height:1.55;}
-    ul{padding-left:1.2rem;}
+    /* ---------- Sections ---------- */
+    section {
+      max-width: 1050px;
+      margin: 3rem auto;
+      padding: 2.8rem 2rem;
+      background: var(--card);
+      border-radius: 12px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    h2 {
+      color: var(--accent);
+      margin-top: 0;
+    }
+    p {
+      line-height: 1.6;
+      color: var(--muted);
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    li {
+      margin-bottom: 0.6rem;
+    }
 
-    /* ---------- Calculators ----------*/
-    .calc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;}
-    .calc-card{background:var(--bg-1);padding:1.5rem;border-radius:12px;box-shadow:0 4px 16px var(--shadow);}
-    .calc-card h3{margin-top:0;font-size:1.3rem;color:var(--accent-1);}  
-    .calc-card label{display:block;margin:.6rem 0 .2rem;font-size:.9rem;color:var(--fg-2);}  
-    .calc-card input{width:100%;padding:.45rem .6rem;border-radius:6px;border:none;background:#222933;color:var(--fg-1);}  
-    .calc-card button{margin-top:1rem;width:100%;padding:.55rem;border:none;border-radius:6px;background:var(--accent-1);color:#fff;font-weight:600;cursor:pointer;transition:filter .2s;}  
-    .calc-card button:hover{filter:brightness(1.15);}  
-    .result{margin-top:.8rem;font-weight:600;color:var(--accent-2);}  
+    /* ---------- Calculators ---------- */
+    .calc-grid {
+      display: grid;
+      gap: 2rem;
+    }
+    @media (min-width: 800px) {
+      .calc-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .calc {
+      background: #121921;
+      border: 1px solid #1d2835;
+      padding: 1.5rem;
+      border-radius: 10px;
+    }
+    .calc h3 {
+      margin-top: 0;
+      color: var(--accent);
+    }
+    .calc label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+    .calc input {
+      width: 100%;
+      padding: 0.4rem 0.6rem;
+      margin-bottom: 0.8rem;
+      border: none;
+      border-radius: 6px;
+      background: #0e141b;
+      color: var(--fg);
+    }
+    .calc button {
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 0;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 0.4rem;
+    }
+    .result {
+      margin-top: 0.8rem;
+      font-weight: 600;
+    }
 
-    /* ---------- Footer ----------*/
-    footer{text-align:center;padding:2rem 1rem;color:var(--fg-2);}  
-
-    /* ---------- Animations ----------*/
-    @keyframes fadeUp{from{opacity:0;transform:translateY(60px);}to{opacity:1;transform:translateY(0);}}
+    /* ---------- Footer ---------- */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body>
-  <!-- Header -->
+  <!-- ========= Header ========= -->
   <header>
-    <div class="logo-wrapper">
-      <img src="logo.png" alt="Future Finance MD logo">
-      <h1>Future Finance MD</h1>
+    <div class="logo-wrap">
+      <img src="logo.png" alt="Future Finance MD logo" />
+      <h1>Future Finance MD</h1>
     </div>
     <nav>
       <a href="#home">Home</a>
-      <a href="#wealth">Wealth</a>
+      <a href="#finance">Finance</a>
       <a href="#insurance">Insurance</a>
       <a href="#pension">Pensions</a>
       <a href="#billing">Billing</a>
@@ -107,88 +214,165 @@
       <a href="#calculators">Calculators</a>
       <a href="#about">About</a>
     </nav>
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
   </header>
 
-  <!-- Hero -->
+  <!-- ========= Hero ========= -->
   <section class="hero" id="home">
-    <h2>Smarter Finance for <em>Every</em> Healthcare Professional</h2>
-    <p>Guides, tools & real‑world insights at the nexus of medicine and money.</p>
-    <!-- Decorative shapes -->
-    <div class="shape circle" style="width:220px;height:220px;left:8%;top:20%;--dur:9s"></div>
-    <div class="shape square" style="width:160px;height:160px;right:10%;top:35%;--dur:11s"></div>
-    <div class="shape tri" style="left:45%;bottom:-40px;--dur:10s"></div>
+    <h2>Smarter Financial Insights for Healthcare Professionals</h2>
+    <p>
+      Future Finance MD empowers clinicians, researchers, and health-science
+      students to master personal & practice finance—minus the jargon.
+    </p>
   </section>
 
-  <!-- Placeholder Sections (user will paste under headings) -->
-  <section id="wealth"><h2>Wealth Management</h2><p><!-- 🖊️ Paste text here --></p></section>
-  <section id="insurance"><h2>Insurance</h2><p><!-- 🖊️ Paste text here --></p></section>
-  <section id="pension"><h2>Pension & Retirement</h2><p><!-- 🖊️ Paste text here --></p></section>
-  <section id="billing"><h2>Billing & Revenue</h2><p><!-- 🖊️ Paste text here --></p></section>
-  <section id="incorporation"><h2>Incorporation</h2><p><!-- 🖊️ Paste text here --></p></section>
-  <section id="debt"><h2>Debt Management</h2><p><!-- 🖊️ Paste text here --></p></section>
+  <!-- ========= Placeholder Sections ========= -->
+  <section id="finance">
+    <h2>Wealth Management</h2>
+    <p>🖊️ Paste text here</p>
+  </section>
 
-  <!-- Calculators -->
+  <section id="insurance">
+    <h2>Insurance</h2>
+    <p>🖊️ Paste text here</p>
+  </section>
+
+  <section id="pension">
+    <h2>Pension &amp; Retirement</h2>
+    <p>🖊️ Paste text here</p>
+  </section>
+
+  <section id="billing">
+    <h2>Billing &amp; Revenue</h2>
+    <p>🖊️ Paste text here</p>
+  </section>
+
+  <section id="incorporation">
+    <h2>Incorporation</h2>
+    <p>🖊️ Paste text here</p>
+  </section>
+
+  <section id="debt">
+    <h2>Debt Management</h2>
+    <p>🖊️ Paste text here</p>
+  </section>
+
+  <!-- ========= Calculators ========= -->
   <section id="calculators">
     <h2>Quick Calculators</h2>
     <div class="calc-grid">
-      <!-- Compound Interest -->
-      <div class="calc-card" id="ci-card">
+      <!-- Compound Growth -->
+      <div class="calc" id="cg-calc">
         <h3>Compound Growth</h3>
-        <label>Initial Amount ($)</label><input type="number" id="ci-principal" value="10000">
-        <label>Monthly Contribution ($)</label><input type="number" id="ci-monthly" value="500">
-        <label>Annual Return (%)</label><input type="number" id="ci-rate" value="6">
-        <label>Years</label><input type="number" id="ci-years" value="20">
-        <button onclick="calcCI()">Calculate</button>
-        <div class="result" id="ci-result"></div>
+        <label>Initial Amount ($)</label>
+        <input type="number" id="cg-initial" value="10000" />
+        <label>Monthly Contribution ($)</label>
+        <input type="number" id="cg-monthly" value="500" />
+        <label>Years</label>
+        <input type="number" id="cg-years" value="20" />
+        <label>Annual Return (%)</label>
+        <input type="number" id="cg-rate" value="6" />
+        <button onclick="calcCompound()">Calculate</button>
+        <p class="result" id="cg-result"></p>
       </div>
+
       <!-- Loan Payoff -->
-      <div class="calc-card" id="loan-card">
-        <h3>Loan Pay‑off</h3>
-        <label>Loan Balance ($)</label><input type="number" id="loan-balance" value="150000">
-        <label>Interest Rate (%)</label><input type="number" id="loan-rate" value="4.5">
-        <label>Monthly Payment ($)</label><input type="number" id="loan-payment" value="1000">
+      <div class="calc" id="lp-calc">
+        <h3>Loan Payoff</h3>
+        <label>Loan Balance ($)</label>
+        <input type="number" id="lp-balance" value="60000" />
+        <label>Annual Interest Rate (%)</label>
+        <input type="number" id="lp-rate" value="5" />
+        <label>Monthly Payment ($)</label>
+        <input type="number" id="lp-payment" value="800" />
         <button onclick="calcLoan()">Calculate</button>
-        <div class="result" id="loan-result"></div>
+        <p class="result" id="lp-result"></p>
       </div>
     </div>
   </section>
 
-  <!-- About -->
+  <!-- ========= About ========= -->
   <section id="about">
-    <h2>About Me</h2>
+    <h2>About Salem Elfirjani</h2>
     <div style="display:flex;flex-wrap:wrap;gap:2rem;align-items:center;">
-      <img src="me.jpeg" alt="Salem Elfirjani" style="width:160px;height:160px;border-radius:50%;object-fit:cover;box-shadow:0 0 14px var(--shadow);">
-      <p>Hello! I’m <strong>Salem Elfirjani</strong>, a biomedical‑sciences student fascinated by the crossroads of healthcare delivery and financial strategy. Through Future Finance MD I share research, tools, and perspectives that make money topics less intimidating for the medical community. All content is independent—no sales pitches, just practical insights you can use right away.</p>
+      <img src="me.jpeg" alt="Salem Elfirjani" style="width:140px;border-radius:50%;box-shadow:0 0 14px rgba(0,0,0,0.45);" />
+      <div>
+        <p>Hi! I’m Salem Elfirjani, a Biomedical Sciences student at Western University fascinated by the intersection of healthcare delivery, finance, and tech. I created <strong>Future Finance MD</strong> to share the resources I wish existed when I first dived into budgeting, investing, and health-system economics.</p>
+        <p>Beyond the classroom I enjoy data-viz projects, reading about health-policy reform, and shooting hoops. Connect with me on <a href="https://www.linkedin.com/in/salem-elfirjani" target="_blank" style="color:var(--accent);">LinkedIn</a>—I’m always keen to chat about ideas that make medicine more financially sustainable for practitioners and patients alike.</p>
+      </div>
     </div>
   </section>
 
-  <footer>© 2025 Future Finance MD • Built & maintained by Salem Elfirjani</footer>
+  <!-- ========= Footer ========= -->
+  <footer>
+    © 2025 Future Finance MD • Design & code by Salem Elfirjani
+  </footer>
 
-  <!--  JS  -->
   <script>
-    // Intersection Observer fade‑in
-    const observer = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('visible');});},{threshold:0.12});
-    document.querySelectorAll('section').forEach(sec=>observer.observe(sec));
+    /* ----- Intersection reveal ----- */
+    const sections = document.querySelectorAll("section");
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) e.target.classList.add("visible");
+        });
+      },
+      { threshold: 0.1 }
+    );
+    sections.forEach((s) => io.observe(s));
 
-    /* Compound growth calculator */
-    function calcCI(){
-      const P = +document.getElementById('ci-principal').value;
-      const m = +document.getElementById('ci-monthly').value;
-      const r = (+document.getElementById('ci-rate').value)/100/12;
-      const n = +document.getElementById('ci-years').value*12;
-      const future = P*Math.pow(1+r,n) + m*( (Math.pow(1+r,n)-1)/r );
-      document.getElementById('ci-result').textContent = 'Future Value: $'+future.toLocaleString(undefined,{maximumFractionDigits:0});
+    /* ----- Theme toggle ----- */
+    function toggleTheme() {
+      document.body.classList.toggle("light");
+      if (document.body.classList.contains("light")) {
+        document.documentElement.style.setProperty("--bg", "#fafbfc");
+        document.documentElement.style.setProperty("--fg", "#181a1f");
+        document.documentElement.style.setProperty("--card", "#ffffff");
+        document.documentElement.style.setProperty("--muted", "#555");
+      } else {
+        document.documentElement.style.setProperty("--bg", "#10151c");
+        document.documentElement.style.setProperty("--fg", "#e7ecef");
+        document.documentElement.style.setProperty("--card", "#18202a");
+        document.documentElement.style.setProperty("--muted", "#9aa1a8");
+      }
     }
 
-    /* Loan payoff calculator */
-    function calcLoan(){
-      const balance = +document.getElementById('loan-balance').value;
-      const rate = (+document.getElementById('loan-rate').value)/100/12;
-      const payment = +document.getElementById('loan-payment').value;
-      if(payment<=balance*rate){document.getElementById('loan-result').textContent='Payment too low to amortize loan.';return;}
-      const months = Math.log(payment/(payment-balance*rate))/Math.log(1+rate);
-      const years = months/12;
-      document.getElementById('loan-result').textContent = 'Paid off in '+months.toFixed(0)+' months ('+years.toFixed(1)+' yrs)';
+    /* ----- Compound growth calculator ----- */
+    function calcCompound() {
+      const P = parseFloat(document.getElementById("cg-initial").value) || 0;
+      const PMT = parseFloat(document.getElementById("cg-monthly").value) || 0;
+      const n = 12;
+      const years = parseFloat(document.getElementById("cg-years").value) || 0;
+      const r = (parseFloat(document.getElementById("cg-rate").value) || 0) / 100 / n;
+      const periods = years * n;
+      const FV = P * Math.pow(1 + r, periods) + (PMT * (Math.pow(1 + r, periods) - 1)) / r;
+      document.getElementById("cg-result").textContent =
+        "Future Value: $" + FV.toFixed(0).toLocaleString();
+    }
+
+    /* ----- Loan payoff calculator ----- */
+    function calcLoan() {
+      let balance = parseFloat(document.getElementById("lp-balance").value) || 0;
+      const rate = (parseFloat(document.getElementById("lp-rate").value) || 0) / 100 / 12;
+      const payment = parseFloat(document.getElementById("lp-payment").value) || 0;
+      if (payment <= rate * balance) {
+        document.getElementById("lp-result").textContent =
+          "Payment too low to ever repay this loan.";
+        return;
+      }
+      let months = 0;
+      let interestTotal = 0;
+      while (balance > 0 && months < 6000) {
+        const interest = balance * rate;
+        interestTotal += interest;
+        balance += interest - payment;
+        months++;
+      }
+      const years = (months / 12).toFixed(1);
+      document.getElementById("lp-result").textContent =
+        `Paid off in ${months} months (${years} years) \u2014 total interest $${interestTotal.toFixed(
+          0
+        ).toLocaleString()}`;
     }
   </script>
 </body>
