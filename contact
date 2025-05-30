@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en"><head>…same head…</head><body>
+  <!-- header… -->
+  <main class="container page-content">
+    <h2>Contact Me</h2>
+    <p>Questions or suggestions? Drop me a line:</p>
+    <ul class="contact-list">
+      <li>Email: <a href="mailto:salem.elfirjani@example.com">salem.elfirjani@example.com</a></li>
+      <li>LinkedIn: <a href="https://ca.linkedin.com/in/salemelfirjani" target="_blank">/in/salemelfirjani</a></li>
+    </ul>
+  </main>
+  <!-- footer… -->
+  <script src="assets/js/main.js"></script>
+</body></html>
