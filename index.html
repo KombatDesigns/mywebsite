@@ -2,97 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Salem Elfirjani | Healthcare Financial Planning</title>
-  <meta name="description" content="Healthcare support in financial planning: where to start, pensions, benefits and more.">
-  <link 
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" 
-    rel="stylesheet">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Salem Elfirjani | Healthcare × Finance</title>
+  <meta name="description" content="Curated resources for healthcare professionals on finance.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- Header / Navigation -->
   <header class="site-header">
     <div class="container">
-      <h1 class="logo">Salem Elfirjani</h1>
+      <a href="index.html" class="logo">Salem<span>Elfirjani</span></a>
+      <button class="nav-toggle" aria-label="toggle nav">☰</button>
       <nav class="nav">
-        <a href="#hero">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="resources.html">Resources</a>
+        <a href="contact.html">Contact</a>
+        <button id="theme-toggle" aria-label="toggle theme">🌙</button>
       </nav>
-      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section id="hero" class="hero">
+  <section class="hero">
     <div class="container">
-      <h2>Empowering Your Healthcare Financial Future</h2>
-      <p>From your first steps in budgeting medical costs to navigating pensions and benefits.</p>
-      <a href="#contact" class="btn">Get Started</a>
+      <h1>Healthcare Meets Finance</h1>
+      <p>Curated, trusted links & summaries for busy healthcare pros.</p>
+      <a href="resources.html" class="btn">Explore Resources</a>
+    </div>
+    <div class="shape shape--wave"></div>
+  </section>
+
+  <section id="features" class="features container">
+    <div class="card">
+      <h3>Trusted Advice</h3>
+      <p>Only link to vetted, healthcare-specific financial sites.</p>
+    </div>
+    <div class="card">
+      <h3>Easy Navigation</h3>
+      <p>Find what you need in one click—no fluff.</p>
+    </div>
+    <div class="card">
+      <h3>Mobile-First</h3>
+      <p>Looks great on phones, tablets, and desktops.</p>
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about" class="about container">
-    <div class="about-image">
-      <!-- Replace with your own portrait -->
-      <img src="https://via.placeholder.com/300" alt="Salem Elfirjani">
-    </div>
-    <div class="about-content">
-      <h2>About Me</h2>
-      <p>Hi, I’m <strong>Salem Elfirjani</strong>, a third-year Biomedical Sciences student and aspiring healthcare professional. With hands-on clinical research experience and a passion for patient advocacy, I help individuals and families build robust financial plans that account for medical expenses, pensions, and benefits.</p>
-      <p>Learn more on my <a href="https://ca.linkedin.com/in/salemelfirjani" target="_blank">LinkedIn profile</a>.</p>
-    </div>
-  </section>
-
-  <!-- Services Section -->
-  <section id="services" class="services container">
-    <h2>What I Offer</h2>
-    <div class="services-grid">
-      <div class="card">
-        <h3>Where to Start</h3>
-        <p>Budgeting for medical costs, setting up an emergency fund, and understanding health savings accounts.</p>
-      </div>
-      <div class="card">
-        <h3>Pensions 101</h3>
-        <p>Overview of Canada Pension Plan (CPP), Old Age Security (OAS), and best practices for retirement income.</p>
-      </div>
-      <div class="card">
-        <h3>Benefits & Insurance</h3>
-        <p>Comparing private health plans, disability insurance, and government subsidized programs.</p>
-      </div>
-      <div class="card">
-        <h3>Resources & Tools</h3>
-        <p>Checklists, calculators, and guides to simplify your healthcare financial journey.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="contact container">
-    <h2>Let’s Talk</h2>
-    <p>Ready to take control of your healthcare finances? Reach out:</p>
-    <ul class="contact-list">
-      <li>Email: <a href="mailto:salem.elfirjani@example.com">salem.elfirjani@example.com</a></li>
-      <li>LinkedIn: <a href="https://ca.linkedin.com/in/salemelfirjani" target="_blank">/in/salemelfirjani</a></li>
-    </ul>
-  </section>
-
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
-      <p>© 2025 Salem Elfirjani. All rights reserved.</p>
+      <p>© 2025 Salem Elfirjani • All rights reserved.</p>
     </div>
   </footer>
 
-  <script>
-    // Simple mobile nav toggle
-    const btn = document.querySelector('.nav-toggle');
-    const nav = document.querySelector('.nav');
-    btn.addEventListener('click', ()=> nav.classList.toggle('nav--visible'));
-  </script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
