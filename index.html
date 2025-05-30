@@ -3,234 +3,193 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Future Finance MD | Smarter Money for Healthcare</title>
+  <title>Future Finance MD | Smarter Money for Healthcare</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ───────────────  COLOUR SYSTEM  ─────────────── */
-    :root{
-      --bg-dark:       #0d1117;
-      --bg-card:       #14191f;
-      --fg-main:       #e9ecef;
-      --fg-muted:      #9aa0a6;
-      --accent:        #00e0b8;
-      --accent-sec:    #ffb454;
-      --border-radius: 14px;
-    }
-    /* light-mode toggle */
-    body.light{
-      --bg-dark:#f7f9fc; --bg-card:#ffffff; --fg-main:#1e1e1e;
-      --fg-muted:#555;  --accent:#00796b;  --accent-sec:#ff6f61;
+    /* ---------- Colour system ----------*/
+    :root {
+      --bg-1: #0e1116;   /* main background  */
+      --bg-2: #151b24;   /* card / subtle   */
+      --fg-1: #e6e8eb;   /* main text       */
+      --fg-2: #97a3b4;   /* muted text      */
+      --accent-1: #26a69a; /* teal accent    */
+      --accent-2: #00d1b2; /* brighter tint  */
+      --danger: #e63946;
+      --shadow: rgba(0,0,0,0.35);
     }
 
-    /* ───────────────  GLOBAL  ─────────────── */
-    *{box-sizing:border-box;padding:0;margin:0}
-    html,body{font-family:'Inter',sans-serif;background:var(--bg-dark);color:var(--fg-main);scroll-behavior:smooth}
-    a{color:var(--accent);text-decoration:none}
-    img{max-width:100%;height:auto;display:block}
+    html,body{
+      margin:0; padding:0;
+      font-family:'Inter',sans-serif;
+      background:var(--bg-1);
+      color:var(--fg-1);
+      scroll-behavior:smooth;
+    }
 
-    /* ───────────────  HEADER  ─────────────── */
+    /* ---------- Header ----------*/
     header{
+      position:sticky;top:0;z-index:999;
       display:flex;justify-content:space-between;align-items:center;
-      padding:1rem 2rem;background:var(--bg-card);position:sticky;top:0;z-index:999;
-      box-shadow:0 4px 16px rgba(0,0,0,.35);
+      padding:0.75rem 2rem;
+      background:var(--bg-2);
+      box-shadow:0 4px 12px var(--shadow);
     }
-    .brand-wrap{display:flex;align-items:center;gap:.75rem}
-    .brand-wrap img{height:48px;width:48px}               /* logo size */
-    .brand-title{font-size:1.8rem;font-weight:700;color:var(--accent)}
-    nav a{margin:0 .8rem;font-weight:600;color:var(--fg-muted);position:relative}
-    nav a::after{content:'';position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--accent);transition:.3s}
-    nav a:hover::after{width:100%}
-
-    .toggle-btn{
-      padding:.45rem .9rem;background:var(--accent);border:none;border-radius:6px;
-      font-weight:600;color:#fff;cursor:pointer;
+    .logo-wrapper{
+      display:flex;align-items:center;gap:0.75rem;
     }
+    .logo-wrapper img{width:58px;height:58px;border-radius:50%;object-fit:cover;box-shadow:0 0 12px var(--shadow);}
+    header h1{font-size:1.85rem;font-weight:700;color:var(--accent-2);margin:0;white-space:nowrap;}
 
-    /* ───────────────  HERO  ─────────────── */
+    nav a{
+      margin:0 1rem;text-decoration:none;font-weight:600;color:var(--fg-2);position:relative;
+    }
+    nav a::after{content:'';position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--accent-1);transition:width .3s;}
+    nav a:hover{color:var(--accent-2);}nav a:hover::after{width:100%;}
+
+    /* ---------- Hero ----------*/
     .hero{
-      position:relative;padding:7rem 2rem 6rem;text-align:center;overflow:hidden;
-      background:linear-gradient(135deg,#002525 0%,#003b35 40%,#004f45 100%);
+      position:relative;overflow:hidden;text-align:center;padding:7rem 1.5rem;
+      background:radial-gradient(circle at center top,var(--accent-1) 0%,var(--bg-1) 70%);
+      isolation:isolate;
     }
-    .hero h1{
-      font-size:3.5rem;font-weight:700;
-      display:flex;flex-direction:column;align-items:center;gap:1rem;
+    .hero h2{font-size:3rem;margin-bottom:1rem;animation:fadeUp 1.2s cubic-bezier(.16,1.08,.32,1);
     }
-    .hero-logo{width:120px;height:120px}                   /* jumbo logo */
-    .hero p{font-size:1.25rem;margin-top:1rem;max-width:760px;margin-inline:auto;color:var(--fg-muted)}
-
-    /* floating geometric accents */
-    .shape{position:absolute;border-radius:50%;opacity:.15;animation:float 10s ease-in-out infinite}
-    .shape.xl{width:320px;height:320px;background:var(--accent-sec)}
-    .shape.lg{width:220px;height:220px;background:var(--accent)}
-    .shape.sm{width:140px;height:140px;background:#ffffff}
-    .shape.one{top:-60px;left:-80px}
-    .shape.two{bottom:-80px;right:-60px}
-    .shape.three{top:40%;right:10%}
-    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(30px)}100%{transform:translateY(0)}}
-
-    /* ───────────────  SECTIONS  ─────────────── */
-    section{
-      max-width:1100px;margin:4rem auto;background:var(--bg-card);
-      padding:3rem 2rem;border-radius:var(--border-radius);
-      box-shadow:0 6px 18px rgba(0,0,0,.4);opacity:0;transform:translateY(50px);
-      transition:all .8s cubic-bezier(.17,.84,.44,1);
+    .hero p{font-size:1.1rem;max-width:720px;margin:0 auto 1rem;animation:fadeUp 1.6s cubic-bezier(.16,1.08,.32,1);
     }
-    section.visible{opacity:1;transform:translateY(0)}
-    h2{font-size:2.1rem;margin-bottom:1rem;color:var(--accent)}
-    .placeholder{font-style:italic;color:var(--fg-muted);border:1px dashed var(--accent-sec);
-      padding:1.2rem;border-radius:12px;margin-top:1rem}
 
-    /* UL style */
-    section ul{margin-top:1.2rem;padding-left:1.2rem}
-    section li{margin-bottom:.6rem;color:var(--fg-muted)}
+    /* floating geometric shapes */
+    .shape{position:absolute;pointer-events:none;opacity:0.07;border-radius:50%;mix-blend-mode:screen;}
+    .shape.circle{background:var(--accent-2);}/* teal circles*/
+    .shape.square{background:#4f46e5;}/* indigo squares*/
+    .shape.tri{width:0;height:0;border-left:40px solid transparent;border-right:40px solid transparent;border-bottom:70px solid #ff6b6b;opacity:0.05;}
+    @keyframes float{0%{transform:translateY(0);}50%{transform:translateY(-30px);}100%{transform:translateY(0);}}
+    .shape{animation:float var(--dur,8s) ease-in-out infinite;}
 
-    /* ───────────────  ABOUT  ─────────────── */
-    .about-wrap{display:flex;flex-wrap:wrap;gap:2rem;align-items:center}
-    .about-wrap img{width:160px;height:160px;border-radius:50%;object-fit:cover;
-      box-shadow:0 0 20px rgba(0,0,0,.55)}
-    .about-text p{margin-bottom:1rem;color:var(--fg-muted)}
+    /* ---------- Sections ----------*/
+    section{max-width:1100px;margin:3.5rem auto;padding:3rem 2rem;background:var(--bg-2);border-radius:14px;box-shadow:0 6px 26px var(--shadow);opacity:0;transform:translateY(40px);transition:all .9s ease;}
+    section.visible{opacity:1;transform:translateY(0);}  
+    section h2{color:var(--accent-2);font-size:1.7rem;margin-top:0;margin-bottom:1rem;letter-spacing:0.3px;}
+    section p,section li{color:var(--fg-2);line-height:1.55;}
+    ul{padding-left:1.2rem;}
 
-    /* ───────────────  FAQ  ─────────────── */
-    details{background:#1b222c;border-radius:10px;padding:1rem;margin-bottom:.8rem}
-    details[open]{background:#222b36}
-    summary{cursor:pointer;font-weight:600;color:var(--accent)}
-    details p{margin-top:.6rem;color:var(--fg-muted)}
+    /* ---------- Calculators ----------*/
+    .calc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;}
+    .calc-card{background:var(--bg-1);padding:1.5rem;border-radius:12px;box-shadow:0 4px 16px var(--shadow);}
+    .calc-card h3{margin-top:0;font-size:1.3rem;color:var(--accent-1);}  
+    .calc-card label{display:block;margin:.6rem 0 .2rem;font-size:.9rem;color:var(--fg-2);}  
+    .calc-card input{width:100%;padding:.45rem .6rem;border-radius:6px;border:none;background:#222933;color:var(--fg-1);}  
+    .calc-card button{margin-top:1rem;width:100%;padding:.55rem;border:none;border-radius:6px;background:var(--accent-1);color:#fff;font-weight:600;cursor:pointer;transition:filter .2s;}  
+    .calc-card button:hover{filter:brightness(1.15);}  
+    .result{margin-top:.8rem;font-weight:600;color:var(--accent-2);}  
 
-    /* ───────────────  FOOTER  ─────────────── */
-    footer{text-align:center;padding:2.5rem 1rem;color:var(--fg-muted)}
+    /* ---------- Footer ----------*/
+    footer{text-align:center;padding:2rem 1rem;color:var(--fg-2);}  
+
+    /* ---------- Animations ----------*/
+    @keyframes fadeUp{from{opacity:0;transform:translateY(60px);}to{opacity:1;transform:translateY(0);}}
   </style>
 </head>
 <body>
-  <!-- ───────────── HEADER ───────────── -->
+  <!-- Header -->
   <header>
-    <div class="brand-wrap">
-      <img src="logo.png" alt="Future Finance MD logo" class="hero-logo">
-      <span class="brand-title">Future&nbsp;Finance&nbsp;MD</span>
+    <div class="logo-wrapper">
+      <img src="logo.png" alt="Future Finance MD logo">
+      <h1>Future Finance MD</h1>
     </div>
     <nav>
+      <a href="#home">Home</a>
       <a href="#wealth">Wealth</a>
       <a href="#insurance">Insurance</a>
-      <a href="#pension">Retirement</a>
+      <a href="#pension">Pensions</a>
       <a href="#billing">Billing</a>
       <a href="#incorporation">Incorporation</a>
       <a href="#debt">Debt</a>
-      <a href="#tax">Tax</a>
-      <a href="#estate">Estate</a>
-      <a href="#tools">Tools</a>
+      <a href="#calculators">Calculators</a>
       <a href="#about">About</a>
-      <a href="#faq">FAQ</a>
     </nav>
-    <button class="toggle-btn" onclick="document.body.classList.toggle('light')">Toggle&nbsp;Theme</button>
   </header>
 
-  <!-- ───────────── HERO ───────────── -->
+  <!-- Hero -->
   <section class="hero" id="home">
-    <div class="shape xl one"></div>
-    <div class="shape lg two"></div>
-    <div class="shape sm three"></div>
-
-    <h1>
-      <img src="logo.png" alt="Future Finance MD" class="hero-logo">
-      Future Finance MD
-    </h1>
-    <p>Actionable finance insights for medical &amp; health-science students, residents, and clinicians—minus the jargon.</p>
+    <h2>Smarter Finance for <em>Every</em> Healthcare Professional</h2>
+    <p>Guides, tools & real‑world insights at the nexus of medicine and money.</p>
+    <!-- Decorative shapes -->
+    <div class="shape circle" style="width:220px;height:220px;left:8%;top:20%;--dur:9s"></div>
+    <div class="shape square" style="width:160px;height:160px;right:10%;top:35%;--dur:11s"></div>
+    <div class="shape tri" style="left:45%;bottom:-40px;--dur:10s"></div>
   </section>
 
-  <!-- ───────────── DISCLAIMER ───────────── -->
-  <section class="disclaimer">
-    <strong>Disclaimer&nbsp;•</strong> Educational content only. This site does not provide personalized financial, tax, or legal advice.
-  </section>
+  <!-- Placeholder Sections (user will paste under headings) -->
+  <section id="wealth"><h2>Wealth Management</h2><p><!-- 🖊️ Paste text here --></p></section>
+  <section id="insurance"><h2>Insurance</h2><p><!-- 🖊️ Paste text here --></p></section>
+  <section id="pension"><h2>Pension & Retirement</h2><p><!-- 🖊️ Paste text here --></p></section>
+  <section id="billing"><h2>Billing & Revenue</h2><p><!-- 🖊️ Paste text here --></p></section>
+  <section id="incorporation"><h2>Incorporation</h2><p><!-- 🖊️ Paste text here --></p></section>
+  <section id="debt"><h2>Debt Management</h2><p><!-- 🖊️ Paste text here --></p></section>
 
-  <!-- ───────────── CONTENT SECTIONS (place your text) ───────────── -->
-  <section id="wealth">
-    <h2>Wealth&nbsp;Management</h2>
-    <div class="placeholder">PASTE TEXT HERE</div>
-  </section>
-
-  <section id="insurance">
-    <h2>Insurance</h2>
-    <div class="placeholder">PASTE TEXT HERE</div>
-  </section>
-
-  <section id="pension">
-    <h2>Pension&nbsp;&amp;&nbsp;Retirement</h2>
-    <div class="placeholder">PASTE TEXT HERE</div>
-  </section>
-
-  <section id="billing">
-    <h2>Billing&nbsp;&amp;&nbsp;Revenue</h2>
-    <div class="placeholder">PASTE TEXT HERE</div>
-  </section>
-
-  <section id="incorporation">
-    <h2>Incorporation</h2>
-    <div class="placeholder">PASTE TEXT HERE</div>
-  </section>
-
-  <section id="debt">
-    <h2>Debt&nbsp;Management</h2>
-    <div class="placeholder">PASTE TEXT HERE</div>
-  </section>
-
-  <section id="tax">
-    <h2>Tax&nbsp;Planning</h2>
-    <div class="placeholder">PASTE TEXT HERE</div>
-  </section>
-
-  <section id="estate">
-    <h2>Estate&nbsp;Planning</h2>
-    <div class="placeholder">PASTE TEXT HERE</div>
-  </section>
-
-  <section id="tools">
-    <h2>Financial&nbsp;Literacy&nbsp;&amp;&nbsp;Tools</h2>
-    <div class="placeholder">PASTE TEXT HERE</div>
-  </section>
-
-  <!-- ───────────── ABOUT ───────────── -->
-  <section id="about">
-    <h2>About&nbsp;the&nbsp;Author</h2>
-    <div class="about-wrap">
-      <img src="me.jpeg" alt="Salem Elfirjani">
-      <div class="about-text">
-        <p><strong>Salem Elfirjani</strong> is a Biomedical Science student at the University of Guelph and a member&nbsp;&amp;&nbsp;writer with <em>STEM Fellowship</em>. He’s fascinated by the crossroads of healthcare, technology, and personal finance—and created Future Finance MD to make money conversations in medicine approachable for everyone.</p>
-        <p>From dissecting studies in class to dissecting tax codes in spare hours, Salem enjoys translating complex topics into plain English. Outside the screen you’ll find him volunteering at community clinics, brewing specialty coffee, or building the next side-project that blends science and finance.</p>
+  <!-- Calculators -->
+  <section id="calculators">
+    <h2>Quick Calculators</h2>
+    <div class="calc-grid">
+      <!-- Compound Interest -->
+      <div class="calc-card" id="ci-card">
+        <h3>Compound Growth</h3>
+        <label>Initial Amount ($)</label><input type="number" id="ci-principal" value="10000">
+        <label>Monthly Contribution ($)</label><input type="number" id="ci-monthly" value="500">
+        <label>Annual Return (%)</label><input type="number" id="ci-rate" value="6">
+        <label>Years</label><input type="number" id="ci-years" value="20">
+        <button onclick="calcCI()">Calculate</button>
+        <div class="result" id="ci-result"></div>
+      </div>
+      <!-- Loan Payoff -->
+      <div class="calc-card" id="loan-card">
+        <h3>Loan Pay‑off</h3>
+        <label>Loan Balance ($)</label><input type="number" id="loan-balance" value="150000">
+        <label>Interest Rate (%)</label><input type="number" id="loan-rate" value="4.5">
+        <label>Monthly Payment ($)</label><input type="number" id="loan-payment" value="1000">
+        <button onclick="calcLoan()">Calculate</button>
+        <div class="result" id="loan-result"></div>
       </div>
     </div>
   </section>
 
-  <!-- ───────────── FAQ ───────────── -->
-  <section id="faq">
-    <h2>Frequently&nbsp;Asked&nbsp;Questions</h2>
-
-    <details>
-      <summary>Is this site only for physicians?</summary>
-      <p>No. While many examples mention doctors, the frameworks apply to nurses, pharmacists, allied-health professionals, med-students, and anyone working in the health ecosystem.</p>
-    </details>
-
-    <details>
-      <summary>Do I need to incorporate as soon as I graduate?</summary>
-      <p>Usually not. Incorporation pays off once your net income comfortably exceeds living costs—otherwise the admin fees may outweigh tax savings. A good accountant can model break-even points for your specialty and province/state.</p>
-    </details>
-
-    <details>
-      <summary>Where should I start if I’m overwhelmed?</summary>
-      <p>Begin with cash-flow: track spending for one month, build an emergency fund, and automate savings into tax-advantaged accounts. Small wins compound; you can layer billing, investing, and tax strategies later.</p>
-    </details>
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:2rem;align-items:center;">
+      <img src="me.jpeg" alt="Salem Elfirjani" style="width:160px;height:160px;border-radius:50%;object-fit:cover;box-shadow:0 0 14px var(--shadow);">
+      <p>Hello! I’m <strong>Salem Elfirjani</strong>, a biomedical‑sciences student fascinated by the crossroads of healthcare delivery and financial strategy. Through Future Finance MD I share research, tools, and perspectives that make money topics less intimidating for the medical community. All content is independent—no sales pitches, just practical insights you can use right away.</p>
+    </div>
   </section>
 
-  <!-- ───────────── FOOTER ───────────── -->
-  <footer>
-    <p>&copy;&nbsp;2025&nbsp;Future Finance MD • Built by Salem Elfirjani</p>
-  </footer>
+  <footer>© 2025 Future Finance MD • Built & maintained by Salem Elfirjani</footer>
 
-  <!-- ───────────── JS ───────────── -->
+  <!--  JS  -->
   <script>
-    /* fade-in on scroll */
-    const io = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
-    },{threshold:0.15});
-    document.querySelectorAll('section').forEach(s=>io.observe(s));
+    // Intersection Observer fade‑in
+    const observer = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('visible');});},{threshold:0.12});
+    document.querySelectorAll('section').forEach(sec=>observer.observe(sec));
+
+    /* Compound growth calculator */
+    function calcCI(){
+      const P = +document.getElementById('ci-principal').value;
+      const m = +document.getElementById('ci-monthly').value;
+      const r = (+document.getElementById('ci-rate').value)/100/12;
+      const n = +document.getElementById('ci-years').value*12;
+      const future = P*Math.pow(1+r,n) + m*( (Math.pow(1+r,n)-1)/r );
+      document.getElementById('ci-result').textContent = 'Future Value: $'+future.toLocaleString(undefined,{maximumFractionDigits:0});
+    }
+
+    /* Loan payoff calculator */
+    function calcLoan(){
+      const balance = +document.getElementById('loan-balance').value;
+      const rate = (+document.getElementById('loan-rate').value)/100/12;
+      const payment = +document.getElementById('loan-payment').value;
+      if(payment<=balance*rate){document.getElementById('loan-result').textContent='Payment too low to amortize loan.';return;}
+      const months = Math.log(payment/(payment-balance*rate))/Math.log(1+rate);
+      const years = months/12;
+      document.getElementById('loan-result').textContent = 'Paid off in '+months.toFixed(0)+' months ('+years.toFixed(1)+' yrs)';
+    }
   </script>
 </body>
 </html>
